@@ -1,0 +1,48 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+
+<h1 style="text-align:center ; color:mediumblue; font-size:205px ; border-style: inset; border-color:rgba(202, 241, 194, 0.795); background-color:paleturquoise; padding: 0px 50px 0px 50px; ">Welcome! to Fragment</h1>
+<h3 style="padding-top: 50px; text-align:center; font-size: 75px;">Login and shorten an Url in just a fraction of seconds. <br> You can also explore below for existing short urls.</h3>
+{% if error %}
+    
+    <div class="container shadow p-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>Url Does not exist</p>
+                <a href="/dashboard" class="btn btn-primary">Shorten A Url</a>
+            </div>
+        </div>
+    </div>
+{% endif %} 
+
+
+<div class="row justify-content-between">
+
+    {% for url in urls %}
+
+    <div class="col-10 col-sm-10 col-md-6 mb-2 mx-auto">
+
+        <div style="overflow: hidden;" class="customcontainer p-2">
+
+            <p style="text-overflow: ellipsis;">Original : <a href="{{ url.original_url }}" target="_blank"
+                    class="card-link">{{ url.original_url }}</a>
+            </p>
+
+            <p>Shorten : <a href="http://localhost:8000/{{ url.short_query }}" target="_blank"
+                    class="card-link">http://localhost:8000/{{ url.short_query }}</a></p>
+            <div class="row justify-content-between">
+                <div class="col-6 col-sm-6 ">
+                    <h3>visits : {{ url.visits }} </h3>
+                </div>
+                </div>
+                </div>
+                </div>
+                    {% endfor %}
+</div>
+</body>
+
+</html>
+
+{% endblock %}
